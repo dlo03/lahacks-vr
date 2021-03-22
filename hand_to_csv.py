@@ -10,8 +10,8 @@ coords = np.array([0.0, 0.0, 0.0, 0.0])
 out = coords
 cap = cv2.VideoCapture(0)
 hands =  mp_hands.Hands(
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5,
+    min_detection_confidence=0.7,
+    min_tracking_confidence=0.7,
     max_num_hands = 1
     )
 while cap.isOpened():
