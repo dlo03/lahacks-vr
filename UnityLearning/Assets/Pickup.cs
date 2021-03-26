@@ -46,7 +46,7 @@ public class Pickup : MonoBehaviour
             this.transform.SetParent(hand.transform);
 
             // Disable collider since without it, the hande jiggles around
-            collider.enabled = false;
+            //collider.enabled = false;
 
 
             // Move the object to the palm
@@ -65,7 +65,8 @@ public class Pickup : MonoBehaviour
             //Physics.IgnoreLayerCollision(8, 9, false);
 
             // Reenable collisions
-            collider.enabled = true;
+            //collider.enabled = true;
+            rigidBody.isKinematic = false;
             objectPos = this.transform.position;
             transform.SetParent(null);
             rigidBody.useGravity = true;
