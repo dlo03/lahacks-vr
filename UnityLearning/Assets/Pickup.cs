@@ -8,6 +8,7 @@ public class Pickup : MonoBehaviour
     // If you are holding down the key and then move to an object, it grabs it. Fix this. Think about KeyUp? KeyDown? Instead of Input.getKey
     // Not make the object warp?
     // Check for multiple objects? (Do later)
+    // You can pick up from anywhere
     // When you release an object, the physics immediately comes back and knocks the hand to downtown LA. Solved: Set to kinematic
 
     public float throwForce = 600;
@@ -45,7 +46,7 @@ public class Pickup : MonoBehaviour
             this.transform.SetParent(hand.transform);
 
             // Disable collider since without it, the hande jiggles around
-            collider.enabled = false;
+            //collider.enabled = false;
 
 
             // Move the object to the palm
@@ -64,7 +65,8 @@ public class Pickup : MonoBehaviour
             //Physics.IgnoreLayerCollision(8, 9, false);
 
             // Reenable collisions
-            collider.enabled = true;
+            //collider.enabled = true;
+            rigidBody.isKinematic = false;
             objectPos = this.transform.position;
             transform.SetParent(null);
             rigidBody.useGravity = true;
@@ -80,7 +82,7 @@ public class Pickup : MonoBehaviour
         //Debug.Log(hand.GetComponent<HandAnimator>().graspValue);
         if (handModel.GetComponent<HandAnimator>().graspValue > 0.5f && collision.gameObject.name == "Hand")
         {
-            Debug.Log("Trigger");
+            //Debug.Log("Trigger");
             holding = true;
             rigidBody.useGravity = false;
             rigidBody.detectCollisions = true;
