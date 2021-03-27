@@ -9,12 +9,20 @@ public class MoveCoordinate : MonoBehaviour
     public float moveSpeed = 5f;
     public Vector3 target;
     public Vector3 target_rotation;
+    public int id = 0; // defaults to 0 (the wrist)
 
     private Rigidbody rb;
     private float lastSqrMag;
     private Vector3 directionalVector;
 
     Vector3 m_EulerAngleVelocity;
+
+    public void UpdateLandmark(Dictionary<string, float>[] landmarks)
+    {
+        Debug.Log("Landmark updated.");
+        var coords = landmarks[id];
+        target = new Vector3(coords["x"] * 100, coords["z"] * 50, coords["y"] * 100);
+    }
 
     void Start()
     {
@@ -36,16 +44,16 @@ public class MoveCoordinate : MonoBehaviour
 
         // Calculate the directional vector from the current position to a target position
         directionalVector = (target - transform.position).normalized * moveSpeed;
-        //Debug.Log(directionalVector);
-        
+        Debug.Log(directionalVector);
+
         // Determine the square distance to the target
         float sqrMag = (target - transform.position).sqrMagnitude;
 
         // If you are past the target, stop all movement
-        if (sqrMag > lastSqrMag)
-        {
-            moveSpeed = 0f;
-        }
+        //if (sqrMag > lastSqrMag)
+        //{
+        //    moveSpeed = 0f;
+        //}
 
         // Set previous square distance
         lastSqrMag = sqrMag;
@@ -57,6 +65,6 @@ public class MoveCoordinate : MonoBehaviour
         rb.MovePosition(transform.position + directionalVector * Time.deltaTime);
 
         Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        //rb.MoveRotation(rb.rotation * deltaRotation);
     }
 }
