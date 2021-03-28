@@ -116,7 +116,7 @@ function App() {
   };
 
   hands.setOptions({
-    maxNumHands: 2,
+    maxNumHands: 1,
     minDetectionConfidence: 0.75,
     minTrackingConfidence: 0.5
   });
