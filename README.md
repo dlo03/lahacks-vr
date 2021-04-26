@@ -8,7 +8,7 @@
   - [Setup](#setup)
 
 ## General Info
-
+See our devpost here! https://devpost.com/software/grip-controller-grasp-responsive-inflatable-pouch-controller
 
 
 ## Technologies
